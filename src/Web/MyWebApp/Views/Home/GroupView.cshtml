@@ -1,0 +1,30 @@
+﻿@model GroupViewModel
+
+@section styles{
+<style>
+   #image:hover{
+       height: 245px;
+       width: 245px;
+   }
+
+   #image{
+       transition: 0.1s;
+   }
+</style>
+}
+
+<div class="container">
+    <h1 class="text-center">@(Model.Group.Name)</h1>
+    
+    @foreach (var image in Model.Group.Images)
+    {
+        @if (image.Url is null)
+        {
+            <img id="image" src="@image.Path" class="shadow-lg rounded mx-auto d-block mt-5" alt="nyusha" height="239" width="239">
+        }
+        else
+        {
+            <img id="image" src="@image.Url" class="shadow-lg rounded mx-auto d-block mt-5" alt="nyusha" height="400" width="295">
+        }
+    }
+</div>

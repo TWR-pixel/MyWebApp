@@ -1,0 +1,39 @@
+﻿@model IndexViewModel
+@{
+    ViewData["Title"] = "Home Page";
+
+}
+
+@section styles{
+<style>
+    #image:hover {
+        height: 410px;
+        width: 300px;
+    }
+
+    #image{
+        transition: 0.1s;
+    }
+
+    #groupref{
+        transition: 0.2s;
+    }
+
+    #groupref:hover{
+        font-size: 21px;
+    }
+</style>
+}
+
+<div class="container">
+    <img id="image" src="~/images/cat_main.jpg" class="shadow-lg rounded mx-auto d-block" alt="nyusha" height="400" width="295">
+
+    @foreach (var group in Model.Groups)
+    {
+        <article class="shadow-lg rounded mx-auto d-block text-center mt-5" style="background-color:black; color:white;width:50%;text-decoration:none;">
+            <a id="groupref" href="/Home/GroupView?Id=@(group.Id)">@(group.Name)</a>
+        </article>
+    }
+
+
+</div>

@@ -1,0 +1,25 @@
+﻿@model ManagerViewModel
+
+<div class="container">
+    @if (User.IsInRole("Admin"))
+    {
+        <hr/>
+        <h1 class="text-center">Admin panel</h1>
+        <hr/>
+
+        @foreach (var group in Model.Groups)
+        {
+            <form asp-action="Manager" asp-controller="Admin" method="post" enctype="multipart/form-data">
+                <select name="id">
+                    <option value="@group.Id">@group.Name</option>
+                </select>
+                <input type="file" class="align-content-center" name="formFile"/>
+                <input type="submit"/>
+            </form>
+        }
+    }
+    else
+    {
+        <div>no rights</div>
+    }
+</div>
