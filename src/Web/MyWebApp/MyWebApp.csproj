@@ -16,7 +16,6 @@
     <Folder Include="Models\Entities\" />
     <Folder Include="Views\Admin\" />
     <Folder Include="wwwroot\images\" />
-    <Folder Include="Loggers\" />
     <Folder Include="wwwroot\images\Apartament" />
     <Folder Include="wwwroot\images\Street" />
     <Folder Include="wwwroot\images\Village" />

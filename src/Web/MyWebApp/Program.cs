@@ -1,17 +1,16 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using MyWebApp.Domain.Services;
 
-var builder = WebApplication.CreateBuilder(args);
 
-builder.Configuration.AddJsonFile("config.json");
+var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddMemoryCache();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Admin/Login");
-        options.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Admin/Login");
+        options.LoginPath = new PathString("/Admin/Login");
+        options.AccessDeniedPath = new PathString("/Admin/Login");
     });
 
 builder.Services.AddControllersWithViews();
@@ -30,6 +29,7 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

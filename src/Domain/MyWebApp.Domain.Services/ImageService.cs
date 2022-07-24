@@ -12,7 +12,7 @@ public sealed class ImageService
 
     public ImageService(string connectionString) => _repo = new ImageRepository(connectionString);
 
-    public async Task<Image> CreateAsync(Image image)
+    public async ValueTask<Image> CreateAsync(Image image)
     {
         if (image is null) throw new ArgumentNullException(nameof(image));
 
@@ -21,7 +21,7 @@ public sealed class ImageService
         return createdImage;
     }
 
-    public async Task<Image> GetByIdAsync(ulong id)
+    public async ValueTask<Image> GetByIdAsync(ulong id)
     {
         var image = await _repo.GetByIdAsync(id);
 
@@ -30,7 +30,7 @@ public sealed class ImageService
         return image;
     }
 
-    public async Task<IList<Image>> GetAllAsync() => await _repo.GetAllAsync();
+    public async ValueTask<IList<Image>> GetAllAsync() => await _repo.GetAllAsync();
 
 
 

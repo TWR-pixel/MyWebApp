@@ -11,7 +11,7 @@ public sealed class UserService
 
     public UserService(string connectionString) => _repo = new UserRepository(connectionString);
 
-    public async Task<User> GetById(ulong id)
+    public async ValueTask<User> GetById(ulong id)
     {
         var user = await _repo.GetByIdAsync(id);
 
@@ -20,7 +20,7 @@ public sealed class UserService
         return user;
     }
 
-    public async Task<User> GetByName(string name)
+    public async ValueTask<User> GetByName(string name)
     {
         var user = await _repo.GetByName(name);
 

@@ -13,17 +13,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{C3D70CCA-DD3
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyWebApp", "src\Web\MyWebApp\MyWebApp.csproj", "{263F59EA-610F-4A4E-BBEF-8714D81FF4FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWebApp.Data", "src\Data\MyWebApp.Data\MyWebApp.Data.csproj", "{83846E75-425A-40CD-80F5-FBE342EEC9F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyWebApp.Data", "src\Data\MyWebApp.Data\MyWebApp.Data.csproj", "{83846E75-425A-40CD-80F5-FBE342EEC9F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWebApp.Data.Entities", "src\Data\MyWebApp.Data.Entities\MyWebApp.Data.Entities.csproj", "{21DD3F02-02AB-4CAB-8E98-434F7794D846}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyWebApp.Data.Entities", "src\Data\MyWebApp.Data.Entities\MyWebApp.Data.Entities.csproj", "{21DD3F02-02AB-4CAB-8E98-434F7794D846}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWebApp.Domain.Services", "src\Domain\MyWebApp.Domain.Services\MyWebApp.Domain.Services.csproj", "{642A02DF-87BA-477A-9FFB-91094552BC97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyWebApp.Domain.Services", "src\Domain\MyWebApp.Domain.Services\MyWebApp.Domain.Services.csproj", "{642A02DF-87BA-477A-9FFB-91094552BC97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWebApp.Domain.Repositories", "src\Domain\MyWebApp.Domain.Repositories\MyWebApp.Domain.Repositories.csproj", "{4C7EBF82-4878-47E9-9F6B-21428B23A58A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyWebApp.Domain.Repositories", "src\Domain\MyWebApp.Domain.Repositories\MyWebApp.Domain.Repositories.csproj", "{4C7EBF82-4878-47E9-9F6B-21428B23A58A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWebApp.Domain.Exceptions", "src\Domain\MyWebApp.Domain.Exceptions\MyWebApp.Domain.Exceptions.csproj", "{E5A5A48C-C489-4E76-BF36-A13F891A63BA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWebApp.Loggers", "src\Web\MyWebApp.Loggers\MyWebApp.Loggers.csproj", "{C5DAE26F-D5D6-4160-856D-9B28D2D1F0C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyWebApp.Domain.Exceptions", "src\Domain\MyWebApp.Domain.Exceptions\MyWebApp.Domain.Exceptions.csproj", "{E5A5A48C-C489-4E76-BF36-A13F891A63BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,10 +53,6 @@ Global
 		{E5A5A48C-C489-4E76-BF36-A13F891A63BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5A5A48C-C489-4E76-BF36-A13F891A63BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5A5A48C-C489-4E76-BF36-A13F891A63BA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C5DAE26F-D5D6-4160-856D-9B28D2D1F0C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C5DAE26F-D5D6-4160-856D-9B28D2D1F0C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C5DAE26F-D5D6-4160-856D-9B28D2D1F0C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C5DAE26F-D5D6-4160-856D-9B28D2D1F0C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,7 +67,6 @@ Global
 		{642A02DF-87BA-477A-9FFB-91094552BC97} = {F0633AED-2E6D-4622-9333-05E62DD90CC8}
 		{4C7EBF82-4878-47E9-9F6B-21428B23A58A} = {F0633AED-2E6D-4622-9333-05E62DD90CC8}
 		{E5A5A48C-C489-4E76-BF36-A13F891A63BA} = {F0633AED-2E6D-4622-9333-05E62DD90CC8}
-		{C5DAE26F-D5D6-4160-856D-9B28D2D1F0C6} = {C3D70CCA-DD33-4608-B7A6-007EB3F66AE3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BD21E71C-1EDE-43D1-82DA-B86627E99D7C}

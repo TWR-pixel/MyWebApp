@@ -7,14 +7,19 @@
         <h1 class="text-center">Admin panel</h1>
         <hr/>
 
+        <form asp-action="AddGroup" asp-controller="Admin" method="post" class="mb-5 align-content-center">
+            <input type="text" placeholder="Добавить группу" name="Name"/>
+            <input type="submit"/>
+        </form>
+
         @foreach (var group in Model.Groups)
         {
             <form asp-action="Manager" asp-controller="Admin" method="post" enctype="multipart/form-data">
-                <select name="id">
+                <select name="id" class="align-content-center text-center">
                     <option value="@group.Id">@group.Name</option>
                 </select>
-                <input type="file" class="align-content-center" name="formFile"/>
-                <input type="submit"/>
+                <input type="file" class="align-content-center text-center" name="formFile"/>
+                <input type="submit" class="align-content-center text-center"/>
             </form>
         }
     }

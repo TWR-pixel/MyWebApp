@@ -16,8 +16,6 @@ public class HomeController : Controller
     private readonly ImageService _imgService;
     private readonly GroupService _groupService;
 
-    
-
     public HomeController(ILogger<HomeController> logger, ImageService imgService, GroupService groupService)
     {
         _imgService = imgService;
@@ -33,6 +31,8 @@ public class HomeController : Controller
     [HttpGet]
     public async ValueTask<IActionResult> IndexAsync()
     {
+        _logger.LogInformation("[GET] Index");
+
         var groups = await _groupService.GetAllAsync();
 
         var model = new IndexViewModel
@@ -52,8 +52,10 @@ public class HomeController : Controller
     [HttpGet]
     public async ValueTask<IActionResult> GroupViewAsync(ulong Id)
     {
+
         try
         {
+
             var group = await _groupService.GetById(Id);
 
             var model = new GroupViewModel
@@ -88,3 +90,4 @@ public class HomeController : Controller
         return Content($"Role: {User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType)?.Value}");
     }
 }
+

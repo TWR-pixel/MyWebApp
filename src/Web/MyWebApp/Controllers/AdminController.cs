@@ -28,6 +28,10 @@ public class AdminController : Controller
         _appEnvironment = env;
     }
 
+    /// <summary>
+    /// Панель админа, где можно все редактировать
+    /// </summary>
+    /// <returns></returns>
     [HttpGet]
     public async Task<IActionResult> Manager()
     {
@@ -39,21 +43,46 @@ public class AdminController : Controller
         return View(model);
     }
 
+    /// <summary>
+    /// Добавляет группу
+    /// </summary>
+    /// <param name="model">view model группы</param>
+    /// <returns></returns>
+    //[Authorize]
+    [HttpPost]
+    public async Task<IActionResult> AddGroup(GroupAdminViewModel model)
+    {
+        var group = new Group
+        {
+            Name = model.Name
+        };
+
+        await _groupService.CreateAsync(group);
+
+        return RedirectToAction("Manager", "Admin");
+    }
+
+    /// <summary>
+    /// Добавляет картинку в группу
+    /// </summary>
+    /// <param name="formFile">Файл группы</param>
+    /// <param name="id">id группы</param>
+    /// <returns></returns>
+    [Authorize]
     [HttpPost]
     public async Task<IActionResult> Manager(IFormFile formFile, ulong id)
     {
-        string path = "/images/" + formFile.FileName;
+        var path = "/images/" + formFile.FileName;
         // сохраняем файл в папку Files в каталоге wwwroot
         await using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
         {
             await formFile.CopyToAsync(fileStream);
         }
-
+        
         var group = await _groupService.GetById(id);
         var image = new Image(null, path, true, group);
-
+        
         await _imageService.CreateAsync(image);
-
         return Content(formFile.FileName);
     }
 
@@ -91,8 +120,9 @@ public class AdminController : Controller
             new Claim(ClaimsIdentity.DefaultNameClaimType, user.Name),
             new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role?.Name)
         };
+
         // создаем объект ClaimsIdentity
-        ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType,
+        var id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType,
             ClaimsIdentity.DefaultRoleClaimType);
         // установка аутентификационных куки
         await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
