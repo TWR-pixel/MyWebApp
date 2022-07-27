@@ -1,1 +1,3 @@
 # MyWebApp
+
+# Database schema
