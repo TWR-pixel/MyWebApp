@@ -8,12 +8,9 @@ public class ImageRepository : IRepository<Image>
 {
     private readonly NorthwindContext _context;
 
-    public ImageRepository(string connectionString)
-    {
-        _context = new NorthwindContext(connectionString);
-    }
+    public ImageRepository(string connectionString) => _context = new NorthwindContext(connectionString);
 
-    public async ValueTask<Image> CreateAsync(Image entity)
+    public async ValueTask<Image> CreateAndSaveAsync(Image entity)
     {
         var image = await _context.Images.AddAsync(entity);
 
@@ -50,7 +47,7 @@ public class ImageRepository : IRepository<Image>
         return image;
     }
 
-    public async ValueTask<IList<Image>> Take(int count)
+    public async ValueTask<IList<Image>> TakeAsync(int count)
     {
         return await _context.Images
             .AsNoTracking()

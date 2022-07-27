@@ -18,7 +18,7 @@ public class GroupRepository : IRepository<Group>
     /// </summary>
     /// <param name="entity">группа</param>
     /// <returns></returns>
-    public async ValueTask<Group> CreateAsync(Group entity)
+    public async ValueTask<Group> CreateAndSaveAsync(Group entity)
     {
         var group = await _context.Groups.AddAsync(entity);
         await _context.SaveChangesAsync();
@@ -51,7 +51,7 @@ public class GroupRepository : IRepository<Group>
             .FirstOrDefaultAsync(g => g.Id == id);
     }
 
-    public async ValueTask<IList<Group>> Take(int count)
+    public async ValueTask<IList<Group>> TakeAsync(int count)
     {
         var groups = await _context.Groups
             .AsNoTracking()

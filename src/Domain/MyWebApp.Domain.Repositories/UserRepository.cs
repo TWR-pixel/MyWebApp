@@ -8,10 +8,7 @@ public sealed class UserRepository : IRepository<User>
 {
     private readonly NorthwindContext _context;
 
-    public UserRepository(string connectionString)
-    {
-        _context = new NorthwindContext(connectionString);
-    }
+    public UserRepository(string connectionString) => _context = new NorthwindContext(connectionString);
 
     public async ValueTask<IList<User>> GetAllAsync()
     {
@@ -29,7 +26,7 @@ public sealed class UserRepository : IRepository<User>
         return user;
     }
 
-    public async ValueTask<User> GetByName(string name)
+    public async ValueTask<User> GetByNameAsync(string name)
     {
         var user = await _context.Users
             .AsNoTracking()
@@ -39,7 +36,7 @@ public sealed class UserRepository : IRepository<User>
         return user;
     }
 
-    public async ValueTask<IList<User>> Take(int count)
+    public async ValueTask<IList<User>> TakeAsync(int count)
     {
         var users = await _context.Users
             .AsNoTracking()
@@ -50,7 +47,7 @@ public sealed class UserRepository : IRepository<User>
         return users;
     }
 
-    public ValueTask<User> CreateAsync(User entity)
+    public ValueTask<User> CreateAndSaveAsync(User entity)
     {
         throw new NotImplementedException();
     }

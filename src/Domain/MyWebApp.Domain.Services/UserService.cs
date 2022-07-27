@@ -10,7 +10,13 @@ public sealed class UserService
 
     public UserService(string connectionString) => _repo = new UserRepository(connectionString);
 
-    public async ValueTask<User> GetById(ulong id)
+    /// <summary>
+    /// возвращает пользователя по id
+    /// </summary>
+    /// <param name="id">id пользователя</param>
+    /// <returns></returns>
+    /// <exception cref="EntityNotFoundException">если пользователь по id не найден</exception>
+    public async ValueTask<User> GetByIdAsync(ulong id)
     {
         var user = await _repo.GetByIdAsync(id);
 
@@ -19,9 +25,15 @@ public sealed class UserService
         return user;
     }
 
-    public async ValueTask<User> GetByName(string name)
+    /// <summary>
+    /// получает пользователя по имени
+    /// </summary>
+    /// <param name="name">имя пользователя</param>
+    /// <returns></returns>
+    /// <exception cref="EntityNotFoundException"></exception>
+    public async ValueTask<User> GetByNameAsync(string name)
     {
-        var user = await _repo.GetByName(name);
+        var user = await _repo.GetByNameAsync(name);
 
         if (user is null) throw new EntityNotFoundException();
 

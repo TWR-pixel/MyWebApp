@@ -10,9 +10,6 @@ using MyWebApp.Models;
 
 namespace MyWebApp.Controllers;
 
-/// <summary>
-/// This controller needs for administrating content
-/// </summary>
 public class AdminController : Controller
 {
     private readonly GroupService _groupService;
@@ -65,6 +62,11 @@ public class AdminController : Controller
         return RedirectToAction("Manager", "Admin");
     }
 
+    /// <summary>
+    /// Удаляет группу вместе с фотографиями с диска
+    /// </summary>
+    /// <param name="groupId">id группы</param>
+    /// <returns></returns>
     [HttpPost, Authorize]
     public async Task<IActionResult> DeleteGroup(uint groupId)
     {
@@ -111,7 +113,7 @@ public class AdminController : Controller
             var group = await _groupService.GetById(model.Id);
             var image = new Image(null, path, true, group.Id);
 
-            await _imageService.CreateAsync(image);
+            await _imageService.CreateAndSaveAsync(image);
             var g = await _groupService.GetAllAsync();
             return RedirectToAction("Manager", "Admin");
         }
@@ -122,6 +124,11 @@ public class AdminController : Controller
     [HttpGet]
     public IActionResult Login() => View();
 
+    /// <summary>
+    /// Аутентификация пользователя
+    /// </summary>
+    /// <param name="viewModel"></param>
+    /// <returns></returns>
     [HttpPost]
     public async Task<IActionResult> Login(LoginViewModel viewModel)
     {
@@ -129,7 +136,7 @@ public class AdminController : Controller
         {
             try
             {
-                var user = await _userService.GetByName(viewModel.Name);
+                var user = await _userService.GetByNameAsync(viewModel.Name);
 
                 if (user.Password == viewModel.Password)
                 {
