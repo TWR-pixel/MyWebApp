@@ -6,7 +6,6 @@ namespace MyWebApp.Domain.Repositories;
 
 public class ImageRepository : IRepository<Image>
 {
-
     private readonly NorthwindContext _context;
 
     public ImageRepository(string connectionString)
@@ -19,13 +18,18 @@ public class ImageRepository : IRepository<Image>
         var image = await _context.Images.AddAsync(entity);
 
         await _context.SaveChangesAsync();
-        
+
         return image.Entity;
     }
 
-    public ValueTask DeleteByIdAsync(ulong id)
+    public async ValueTask DeleteByIdAsync(ulong id)
     {
-        throw new NotImplementedException();
+        var image = await _context.Images
+            .FirstOrDefaultAsync(i => i.Id == id);
+
+        _context.Images.Remove(image);
+
+        await _context.SaveChangesAsync();
     }
 
     public async ValueTask<IList<Image>> GetAllAsync()

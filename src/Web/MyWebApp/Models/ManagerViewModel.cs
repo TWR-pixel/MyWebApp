@@ -4,5 +4,5 @@ namespace MyWebApp.Models;
 
 public class ManagerViewModel
 {
-    public List<Group> Groups { get; set; }
+    public IList<Group> Groups { get; set; }
 }

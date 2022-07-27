@@ -2,11 +2,26 @@
 
 namespace MyWebApp.Data.Entities;
 
-public class User : EntityBase
+public record User : EntityBase
 {
-    [Required] [StringLength(40)] public string Name { get; set; }
-    [Required] public string Password { get; set; }
-    [Required] public Role Role { get; set; }
+    /// <summary>
+    /// Имя пользователя
+    /// </summary>
+    [Required]
+    [StringLength(40)]
+    public string Name { get; set; }
+
+    /// <summary>
+    /// Пароль пользователя
+    /// </summary>
+    [Required]
+    public string Password { get; set; }
+
+    /// <summary>
+    /// Роль пользователя
+    /// </summary>
+    [Required]
+    public Role Role { get; set; }
 
     public ulong RoleId { get; set; }
 
@@ -18,6 +33,6 @@ public class User : EntityBase
     {
         Name = name;
         Password = password;
-        Role = role;
+        Role = role ?? throw new ArgumentNullException(nameof(role));
     }
 }

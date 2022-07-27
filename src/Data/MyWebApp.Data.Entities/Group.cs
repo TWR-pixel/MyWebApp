@@ -5,7 +5,7 @@ namespace MyWebApp.Data.Entities;
 /// <summary>
 /// Entity contains images
 /// </summary>
-public class Group : EntityBase
+public record Group : EntityBase
 {
     /// <summary>
     /// Group name
@@ -21,7 +21,7 @@ public class Group : EntityBase
     public Group(string? name, List<Image>? images)
     {
         Name = name;
-        Images = images;
+        Images = images ?? throw new ArgumentNullException(nameof(images));
     }
 
     public Group()

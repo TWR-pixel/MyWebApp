@@ -4,7 +4,7 @@ using MyWebApp.Data.Entities;
 
 namespace MyWebApp.Domain.Repositories;
 
-public class UserRepository : IRepository<User>
+public sealed class UserRepository : IRepository<User>
 {
     private readonly NorthwindContext _context;
 
@@ -39,9 +39,15 @@ public class UserRepository : IRepository<User>
         return user;
     }
 
-    public ValueTask<IList<User>> Take(int count)
+    public async ValueTask<IList<User>> Take(int count)
     {
-        throw new NotImplementedException();
+        var users = await _context.Users
+            .AsNoTracking()
+            .Include(u => u.Role)
+            .Take(count)
+            .ToListAsync();
+
+        return users;
     }
 
     public ValueTask<User> CreateAsync(User entity)

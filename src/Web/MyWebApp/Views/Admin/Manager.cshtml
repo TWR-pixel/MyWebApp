@@ -1,4 +1,7 @@
 ﻿@model ManagerViewModel
+@{
+    ViewData["Title"] = "Admin";
+}
 
 <div class="container">
     @if (User.IsInRole("Admin"))
@@ -8,18 +11,21 @@
         <hr/>
 
         <form asp-action="AddGroup" asp-controller="Admin" method="post" class="mb-5 align-content-center">
-            <input type="text" placeholder="Добавить группу" name="Name"/>
-            <input type="submit"/>
+            <input type="text" placeholder="Название группы" name="Name"/>
+            <button type="submit" class="btn btn-outline-success">Создать</button>
         </form>
 
         @foreach (var group in Model.Groups)
         {
-            <form asp-action="Manager" asp-controller="Admin" method="post" enctype="multipart/form-data">
-                <select name="id" class="align-content-center text-center">
+            <form asp-action="Manager" asp-controller="Admin" method="post" enctype="multipart/form-data" class="align-content-center">
+                <select name="Id" class="align-content-center text-center mb-1">
                     <option value="@group.Id">@group.Name</option>
                 </select>
-                <input type="file" class="align-content-center text-center" name="formFile"/>
-                <input type="submit" class="align-content-center text-center"/>
+                <input type="file" class="align-content-center text-center form-control mb-1" name="FormFile"/>
+                <button type="submit" class="btn btn-outline-success mb-1">Добавить</button>
+            </form>
+            <form asp-action="DeleteGroup" asp-controller="Admin" class="mb-lg-4 align-content-center">
+                <button type="submit" name="groupId" value="@group.Id" class="btn btn-outline-danger">Удалить</button>
             </form>
         }
     }

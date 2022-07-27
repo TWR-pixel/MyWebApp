@@ -1,4 +1,5 @@
-﻿using MyWebApp.Data.Entities;
+﻿using System.Collections.Concurrent;
+using MyWebApp.Data.Entities;
 using MyWebApp.Domain.Repositories;
 using MyWebApp.Domain.Exceptions;
 
@@ -7,10 +8,14 @@ namespace MyWebApp.Domain.Services;
 public sealed class GroupService
 {
     private readonly IRepository<Group> _repo;
+    private static ConcurrentDictionary<string, Group> _cache;
 
     public GroupService(IRepository<Group> repo) => _repo = repo;
 
-    public GroupService(string connectionString) => _repo = new GroupRepository(connectionString);
+    public GroupService(string connectionString)
+    {
+        _repo = new GroupRepository(connectionString);
+    }
 
     public async ValueTask<IList<Group>> GetAllAsync() => await _repo.GetAllAsync();
 
@@ -29,4 +34,9 @@ public sealed class GroupService
 
         return group;
     }
-}   
+
+    public async ValueTask DeleteByIdAsync(ulong id)
+    {
+        await _repo.DeleteByIdAsync(id);
+    }
+}

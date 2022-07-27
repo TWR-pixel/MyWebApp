@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Domain\MyWebApp.Domain.Services\MyWebApp.Domain.Services.csproj" />
+    <ProjectReference Include="..\MyWebApp.Services\MyWebApp.Services.csproj" />
   </ItemGroup>
 
 </Project>

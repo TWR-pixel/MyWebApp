@@ -1,7 +1,6 @@
 ﻿@model IndexViewModel
 @{
     ViewData["Title"] = "Home Page";
-
 }
 
 @section styles{
@@ -26,9 +25,13 @@
 }
 
 <div class="container">
-    <img id="image" src="~/images/cat_main.jpg" class="shadow-lg rounded mx-auto d-block" alt="nyusha" height="400" width="295">
+    <img id="image" src="~/images/cat_main.jpg" class="rounded mx-auto d-block" alt="nyusha" height="400" width="295">
 
-    @foreach (var group in Model.Groups)
+
+    @{
+        System.Diagnostics.Debug.Assert(Model.Groups != null, "Model.Groups != null");
+    }
+    @foreach (var group in  Model.Groups)
     {
         <article class="shadow-lg rounded mx-auto d-block text-center mt-5" style="background-color:black; color:white;width:50%;text-decoration:none;">
             <a id="groupref" href="/Home/GroupView?Id=@(group.Id)">@(group.Name)</a>

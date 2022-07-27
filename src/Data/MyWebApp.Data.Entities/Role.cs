@@ -1,6 +1,11 @@
-﻿namespace MyWebApp.Data.Entities;
+﻿using System.ComponentModel.DataAnnotations;
 
-public class Role : EntityBase
+namespace MyWebApp.Data.Entities;
+
+public record Role : EntityBase
 {
-    public string Name { get; set; }
+    /// <summary>
+    /// Название роли
+    /// </summary>
+    [Required] public string? Name { get; set; }
 }

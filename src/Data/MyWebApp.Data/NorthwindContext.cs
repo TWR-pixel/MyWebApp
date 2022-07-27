@@ -27,9 +27,12 @@ public sealed class NorthwindContext : DbContext
         //DatabaseInitializer.Init(this);
     }
 
+    public NorthwindContext(DbContextOptions<NorthwindContext> options) : base(options)
+    {
+    }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlite(_connStr);
     }
-
 }

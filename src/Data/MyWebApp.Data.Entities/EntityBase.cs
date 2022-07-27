@@ -1,6 +1,6 @@
 ﻿namespace MyWebApp.Data.Entities;
 
-public abstract class EntityBase
+public abstract record EntityBase
 {
     public ulong Id { get; set; }
 }
